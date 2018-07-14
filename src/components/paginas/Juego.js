@@ -81,6 +81,17 @@ class Juego extends React.Component {
                     //Mostrar pregunta
                     $("#preguntaDiv").removeClass("oculto");
                     $("#preguntaDiv").addClass("visible");
+                    //-----------------
+                    console.log("----------->>>>"+preguntaObjeto.tipo);
+                    if(preguntaObjeto.tipo=="problema"){
+                        //Ocultar test
+                        $("#tipoTest").addClass("oculto");
+                        $("#tipoTest").removeClass("visible");
+                        //Mostart problema
+                        $("#tipoProblema").addClass("visible");
+                        $("#tipoProblema").removeClass("oculto");
+                    }
+                    //-------------
                     //Ocultar boton jugar
                     $("#botonJugar").addClass("oculto");
                     $("#botonJugar").removeClass("visible");
@@ -205,6 +216,7 @@ class Juego extends React.Component {
                 var casilla = {};
                 casilla.tipo = "Problema";
                 casilla.nivel = j + 1;
+                casilla.id = temas[i][0].id;
                 casillas.push(casilla);
             }
             preguntas.push(casillas);
@@ -375,6 +387,7 @@ class Juego extends React.Component {
         var datos = this.obtenerBloques();
         var temas = this.obtenerTemas(datos.bloques);
         var preguntas = this.obtenerPreguntas(temas);
+        console.log(preguntas);
         var siguientePregunta = this.obtenerSiguientePregunta();
         //this.ponerPosicionesEnTablero();
         return (
